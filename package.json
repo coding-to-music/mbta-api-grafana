@@ -1,0 +1,12 @@
+{
+  "name": "mbta-api-grafana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "git add . && git commit -m Build && git push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
