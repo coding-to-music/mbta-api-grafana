@@ -51,6 +51,15 @@ Interesting Content
 - Stops
 - Service Alerts
 
+## Examples 
+
+```
+  const requestURL = `${REQUEST_DOMAIN}/predictions/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
+  const requestURL = `${REQUEST_DOMAIN}/schedules/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
+  const requestURL = `${REQUEST_DOMAIN}/alerts/?filter[route]=${routeId}&sort=-severity`;
+```
 
 ### Get Lines
 
@@ -97,5 +106,49 @@ Output
 ### Get Stops
 
 ```
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json"
+curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | more
+
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=${routeId}&sort=name" -H "accept: application/vnd.api+json"
+```
+
+## Examples 
+
+```
+  const requestURL = `${REQUEST_DOMAIN}/predictions/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
+  const requestURL = `${REQUEST_DOMAIN}/schedules/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
+  const requestURL = `${REQUEST_DOMAIN}/alerts/?filter[route]=${routeId}&sort=-severity`;
+```
+
+```
+curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
+```
+
+```
+        "name": "Brighton St @ Coolidge Rd",
+        "at_street": "Coolidge Avenue",
+        "name": "Mt Auburn St opp Coolidge Ave",
+        "at_street": "Coolidge Street",
+        "name": "Harvard St @ Coolidge St",
+        "at_street": "Coolidge Street",
+        "name": "Ferry St @ Coolidge St",
+        "description": "Coolidge Corner - Green Line - (C) Cleveland Circle",
+        "name": "Coolidge Corner",
+        "at_street": "Coolidge Road",
+        "description": "Coolidge Corner - Green Line - Park Street & North",
+        "name": "Coolidge Corner",
+        "at_street": "Coolidge Avenue",
+        "name": "Mt Auburn St @ Coolidge Ave",
+        "at_street": "Coolidge Road",
+        "name": "N Harvard St @ Coolidge Rd",
+        "at_street": "Coolidge Street",
+        "name": "Harvard St @ Coolidge St",
+        "at_street": "Coolidge Road",
+        "name": "Spring Rd @ Coolidge Rd",
+        "at_street": "Coolidge Avenue",
+        "name": "Lynn St @ Coolidge Ave",
+        "at_street": "Coolidge Street",
+        "name": "Washington St @ Coolidge Rd",
+        "name": "Coolidge Corner",
 ```
