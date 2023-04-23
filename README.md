@@ -210,4 +210,50 @@ curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json
 
 curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | more 
 
+curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | grep self | more 
+
+```
+
+```
+        "self": "/routes/Red"
+        "self": "/routes/Mattapan"
+        "self": "/routes/Orange"
+        "self": "/routes/Green-B"
+        "self": "/routes/Green-C"
+        "self": "/routes/Green-D"
+        "self": "/routes/Green-E"
+        "self": "/routes/Blue"
+        "self": "/routes/741"
+        "self": "/routes/742"
+        "self": "/routes/743"
+        "self": "/routes/751"
+        "self": "/routes/749"
+        "self": "/routes/746"
+        "self": "/routes/CR-Fairmount"
+        "self": "/routes/CR-Fitchburg"
+        "self": "/routes/CR-Worcester"
+        "self": "/routes/CR-Franklin"
+        "self": "/routes/CR-Greenbush"
+        "self": "/routes/CR-Haverhill"
+        "self": "/routes/CR-Kingston"
+        "self": "/routes/CR-Lowell"
+        "self": "/routes/CR-Middleborough"
+        "self": "/routes/CR-Needham"
+        "self": "/routes/CR-Newburyport"
+        "self": "/routes/CR-Providence"
+        "self": "/routes/CR-Foxboro"
+        "self": "/routes/Boat-F4"
+        "self": "/routes/Boat-F1"
+        "self": "/routes/Boat-EastBoston"
+        "self": "/routes/747"
+        "self": "/routes/708"
+        "self": "/routes/1"
+        "self": "/routes/4"
+        "self": "/routes/7"
+        "self": "/routes/8"
+        "self": "/routes/9"
+        "self": "/routes/10"
+        "self": "/routes/11"
+        "self": "/routes/14"
+        "self": "/routes/15"
 ```
