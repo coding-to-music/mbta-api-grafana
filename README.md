@@ -204,3 +204,10 @@ curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json
         "name": "Washington St @ Coolidge Rd",
         "name": "Coolidge Corner",
 ```
+
+```
+curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | more 
+
+```
