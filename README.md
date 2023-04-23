@@ -259,5 +259,46 @@ curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+jso
 
 
 ```
-curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | grep self | more 
+curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | more 
+```
+
+```
+{
+  "data": {
+    "attributes": {
+      "color": "00843D",
+      "description": "Rapid Transit",
+      "direction_destinations": [
+        "Cleveland Circle",
+        "Government Center"
+      ],
+      "direction_names": [
+        "West",
+        "East"
+      ],
+      "fare_class": "Rapid Transit",
+      "long_name": "Green Line C",
+      "short_name": "C",
+      "sort_order": 10033,
+      "text_color": "FFFFFF",
+      "type": 0
+    },
+    "id": "Green-C",
+    "links": {
+      "self": "/routes/Green-C"
+    },
+    "relationships": {
+      "line": {
+        "data": {
+          "id": "line-Green",
+          "type": "line"
+        }
+      }
+    },
+    "type": "route"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  }
+}
 ```
