@@ -154,7 +154,17 @@ curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+jso
 ```
 
 ```
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json"
+        "self": "/lines/line-Green"
+
+curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/lines/line-Green" -H "accept: application/vnd.api+json" | jq | more 
+curl -X GET "https://api-v3.mbta.com/lines/line-Red" -H "accept: application/vnd.api+json" | jq | more 
+curl -X GET "https://api-v3.mbta.com/lines/line-Blue" -H "accept: application/vnd.api+json" | jq | more 
+curl -X GET "https://api-v3.mbta.com/lines/line-Orange" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/lines/line-Blue/stops/" -H "accept: application/vnd.api+json" | jq | more 
+
 
 curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
 ```
