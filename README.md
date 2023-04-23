@@ -211,7 +211,6 @@ curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json
 curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | more 
 
 curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | grep self | more 
-
 ```
 
 ```
@@ -256,4 +255,9 @@ curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+jso
         "self": "/routes/11"
         "self": "/routes/14"
         "self": "/routes/15"
+```
+
+
+```
+curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | grep self | more 
 ```
