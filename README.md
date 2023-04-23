@@ -166,6 +166,41 @@ curl -X GET "https://api-v3.mbta.com/lines/line-Orange" -H "accept: application/
 curl -X GET "https://api-v3.mbta.com/lines/line-Blue/stops/" -H "accept: application/vnd.api+json" | jq | more 
 
 
+curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep self | more 
+
 curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
 ```
 
+```
+curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more 
+```
+
+```
+        "name": "Brighton St @ Coolidge Rd",
+        "at_street": "Coolidge Avenue",
+        "name": "Mt Auburn St opp Coolidge Ave",
+        "at_street": "Coolidge Street",
+        "name": "Harvard St @ Coolidge St",
+        "at_street": "Coolidge Street",
+        "name": "Ferry St @ Coolidge St",
+        "description": "Coolidge Corner - Green Line - (C) Cleveland Circle",
+        "name": "Coolidge Corner",
+        "at_street": "Coolidge Road",
+        "description": "Coolidge Corner - Green Line - Park Street & North",
+        "name": "Coolidge Corner",
+        "at_street": "Coolidge Avenue",
+        "name": "Mt Auburn St @ Coolidge Ave",
+        "at_street": "Coolidge Road",
+        "name": "N Harvard St @ Coolidge Rd",
+        "at_street": "Coolidge Street",
+        "name": "Harvard St @ Coolidge St",
+        "at_street": "Coolidge Road",
+        "name": "Spring Rd @ Coolidge Rd",
+        "at_street": "Coolidge Avenue",
+        "name": "Lynn St @ Coolidge Ave",
+        "at_street": "Coolidge Street",
+        "name": "Washington St @ Coolidge Rd",
+        "name": "Coolidge Corner",
+```
