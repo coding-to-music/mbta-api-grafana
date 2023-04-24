@@ -324,5 +324,9 @@ curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json
 # all stops for a particular route
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
 
+curl -X GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=address" -H "accept: application/vnd.api+json" | jq | more 
+
 curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
 ```
