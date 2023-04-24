@@ -302,3 +302,27 @@ curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd
   }
 }
 ```
+
+
+```
+  const requestURL = `${REQUEST_DOMAIN}/predictions/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
+  const requestURL = `${REQUEST_DOMAIN}/schedules/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
+  const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
+  const requestURL = `${REQUEST_DOMAIN}/alerts/?filter[route]=${routeId}&sort=-severity`;
+
+    "id": "Green-C",
+
+```
+
+```
+  const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
+
+# all stops in the system
+curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+
+# all stops for a particular route
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
+
+curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
+```
