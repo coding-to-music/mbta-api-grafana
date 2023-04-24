@@ -317,12 +317,19 @@ curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd
 
 ```
   const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
+```
 
 # all stops in the system
+
+```
 curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+```
 
 # all stops for a particular route
+
+```
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
+```
 
 # all stops for a particular route, returning the address field
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address" -H "accept: application/vnd.api+json" | jq | more 
@@ -332,11 +339,46 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fiel
 
 # include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
+```
 
 
+```
 curl -X GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
 
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=address" -H "accept: application/vnd.api+json" | jq | more 
 
 curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
 ```
+
+# Goals
+
+## Get list of lines
+
+```
+```
+
+## Get Routes on each line
+
+```
+```
+
+## Get Stops on a Route
+
+```
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
+```
+# all stops for a particular route, returning the address, name and municipality fields
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
+
+
+## Get running equipment on each Route
+
+```
+```
+
+## Get Prediction for a stop
+
+```
+```
+
+
