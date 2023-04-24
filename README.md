@@ -331,6 +331,7 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fiel
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
 
 # include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
+```
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
 ```
 
