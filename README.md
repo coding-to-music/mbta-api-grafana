@@ -93,15 +93,8 @@ text_color
       "type": "line"
     },
 ```
+
     "id": "line-Red",
-
-```
-
-Output
-
-```
-
-```
 
 ### Get Stops
 
