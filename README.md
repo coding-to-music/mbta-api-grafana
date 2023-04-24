@@ -91,7 +91,7 @@ text_color
         "self": "/lines/line-Green"
       },
       "type": "line"
-    },```
+    },
 ```
     "id": "line-Red",
 
