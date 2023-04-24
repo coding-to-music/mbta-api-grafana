@@ -327,6 +327,12 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H 
 # all stops for a particular route, returning the address field
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address" -H "accept: application/vnd.api+json" | jq | more 
 
+# all stops for a particular route, returning the address, name and municipality fields
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
+
+# include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
+curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
+
 
 curl -X GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
 
