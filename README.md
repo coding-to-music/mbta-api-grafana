@@ -1,8 +1,8 @@
-# mbta-api-grafana
+# mbta-api-queries
 
-# 🚀 Call the MBTA v3 API via Grafana 🚀
+# 🚀 Query the MBTA v3 API via curl 🚀
 
-https://github.com/coding-to-music/mbta-api-grafana
+https://github.com/coding-to-music/mbta-api-queries
 
 
 From / By 
@@ -20,7 +20,7 @@ git add .
 git remote remove origin
 git commit -m "first commit"
 git branch -M main
-git remote add origin git@github.com:coding-to-music/mbta-api-grafana.git
+git remote add origin git@github.com:coding-to-music/mbta-api-queries.git
 git push -u origin main
 ```
 

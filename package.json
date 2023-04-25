@@ -1,5 +1,5 @@
 {
-  "name": "mbta-api-grafana",
+  "name": "mbta-api-queries",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
