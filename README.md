@@ -127,7 +127,7 @@ curl -X GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,desc
 ```
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
 ```
-# all stops for a particular route, returning the address, name and municipality fields
+## all stops for a particular route, returning the address, name and municipality fields
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
 
 
