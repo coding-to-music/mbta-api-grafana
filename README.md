@@ -116,8 +116,10 @@ curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+jso
 ```
   const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
 
+# all routes
 curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | more
 
+# just the long_name
 curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | grep long_name | more
 
 ```
@@ -139,6 +141,40 @@ The meaning of direction_id varies based on the route. You can programmatically 
 
 ```
 filter[direction_id]
+
+# all routes
+curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | more
+
+direction_destinations
+direction_names
+
+# filter and only get one particular route
+curl -sX GET "https://api-v3.mbta.com/routes?filter[id]=Green-B" -H "accept: application/vnd.api+json" | jq | more
+
+# filter and only get local bus - does not work
+curl -sX GET "https://api-v3.mbta.com/routes?filter[fare_class]=Local%20Bus" -H "accept: application/vnd.api+json" | jq | more
+
+# filter and only get Rapid Transit - does not work
+curl -sX GET "https://api-v3.mbta.com/routes?filter[fare_class]=Rapid%20Transit" -H "accept: application/vnd.api+json" | jq | more
+
+# filter and only get Commuter Rail - does not work
+curl -sX GET "https://api-v3.mbta.com/routes?filter[description]=Commuter%20Rail" -H "accept: application/vnd.api+json" | jq | more
+
+# filter and only get Commuter Rail - does not work
+curl -sX GET "https://api-v3.mbta.com/routes?filter[fare_class]=Commuter%20Rail" -H "accept: application/vnd.api+json" | jq | more
+
+# all Commuter Rail routes - does not work
+curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description&filter[description]=Rapid%20Transit" -H "accept: application/vnd.api+json" | jq | more
+
+# get Green Line Route 
+curl -sX GET "https://api-v3.mbta.com/routes?filter[id]=Green-B&filter[type]=0" -H "accept: application/vnd.api+json" | jq | more
+
+# get one route
+?sort=type,short_name,long_name,description
+
+
+
+curl -sX GET "https://api-v3.mbta.com/routes/?filter[route]=Green-C" -H "accept: application/vnd.api+json" | jq | more
 
 ## this does not work
 curl -sX GET "https://api-v3.mbta.com/routes/data/attributes/direction_names?filter[route]=Green-C" -H "accept: application/vnd.api+json" | jq | more 
