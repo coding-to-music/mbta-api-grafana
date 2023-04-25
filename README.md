@@ -62,7 +62,6 @@ Interesting Content
   const requestURL = `${REQUEST_DOMAIN}/alerts/?filter[route]=${routeId}&sort=-severity`;
 
     "id": "Green-C",
-
 ```
 
 ```
