@@ -68,25 +68,25 @@ Interesting Content
   const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
 ```
 
-# all stops in the system
+## all stops in the system
 
 ```
 curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
-# all stops for a particular route
+## all stops for a particular route
 
 ```
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
-# all stops for a particular route, returning the address field
+## all stops for a particular route, returning the address field
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address" -H "accept: application/vnd.api+json" | jq | more 
 
-# all stops for a particular route, returning the address, name and municipality fields
+## all stops for a particular route, returning the address, name and municipality fields
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
 
-# include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
+## include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
 ```
 curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
 ```
@@ -99,9 +99,9 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=a
 
 curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
 ```
-# ###################################
+## ###################################
 # Goals
-# ###################################
+## ###################################
 
 ## Get list of lines
 
@@ -142,9 +142,9 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fiel
 ```
 
 
-# ###################################
+## ###################################
 # General Research Queries
-# ###################################
+## ###################################
 
 ### Get Lines
 
@@ -337,6 +337,7 @@ curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+jso
         "self": "/routes/15"
 ```
 
+## Get a Route
 
 ```
 curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | more 
