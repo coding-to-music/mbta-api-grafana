@@ -51,15 +51,6 @@ Interesting Content
 - Stops
 - Service Alerts
 
-## Examples 
-
-```
-  const requestURL = `${REQUEST_DOMAIN}/predictions/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
-  const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
-  const requestURL = `${REQUEST_DOMAIN}/schedules/?filter[route]=${routeId}&filter[stop]=${routeStopId}&sort=direction_id,departure_time`;
-  const requestURL = `${REQUEST_DOMAIN}/stops/?filter[route]=${routeId}&sort=name`;
-  const requestURL = `${REQUEST_DOMAIN}/alerts/?filter[route]=${routeId}&sort=-severity`;
-```
 
 ## Examples of using filter and the key api endpoints
 
@@ -109,8 +100,9 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=a
 
 curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
 ```
-
+# ###################################
 # Goals
+# ###################################
 
 ## Get list of lines
 
@@ -123,6 +115,12 @@ curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json
 ## Get Routes on each line
 
 ```
+  const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
+
+curl -X GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | more
+
+curl -X GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | grep long_name | more
+
 ```
 
 ## Get Stops on a Route
@@ -145,6 +143,9 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fiel
 ```
 
 
+# ###################################
+# General Research Queries
+# ###################################
 
 ### Get Lines
 
