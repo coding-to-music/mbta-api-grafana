@@ -71,33 +71,33 @@ Interesting Content
 ## all stops in the system
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
 ## all stops for a particular route
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
 ## all stops for a particular route, returning the address field
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address" -H "accept: application/vnd.api+json" | jq | more 
 
 ## all stops for a particular route, returning the address, name and municipality fields
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
 
 ## include the predicted next arrival time at each stop -- get output "Unsupported include(s): predictions"
 ```
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&include=predictions&fields[stop]=address,name,municipality&fields[prediction]=arrival_time" -H "accept: application/vnd.api+json" | jq | more
 ```
 
 
 ```
-curl -X GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=address" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&fields[trip]=address" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&include=representative_trip&fields[trip]=headsign" -H "accept: application/vnd.api+json" | jq | more
 ```
 ## ###################################
 # Goals
@@ -106,9 +106,9 @@ curl -X GET "https://api-v3.mbta.com/route_patterns?filter[route]=Green-C&includ
 ## Get list of lines
 
 ```
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more
 
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | grep long_name | more
+curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | grep long_name | more
 ```
 
 ## Get Routes on each line
@@ -116,29 +116,64 @@ curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json
 ```
   const requestURL = `${REQUEST_DOMAIN}/routes/?sort=type,short_name,long_name,description`;
 
-curl -X GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | more
 
-curl -X GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | grep long_name | more
+curl -sX GET "https://api-v3.mbta.com/routes/?sort=type,short_name,long_name,description" -H "accept: application/vnd.api+json" | jq | grep long_name | more
 
 ```
 
 ## Get Stops on a Route
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name" -H "accept: application/vnd.api+json" | jq | more 
 ```
 ## all stops for a particular route, returning the address, name and municipality fields
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fields[stop]=address,name,municipality" -H "accept: application/vnd.api+json" | jq | more
 
+
+## Directions on the Route
+
+Filter by direction of travel along the route. Must be used in conjuction with filter[route] to apply.
+
+The meaning of direction_id varies based on the route. You can programmatically get the direction names from `/routes /data/{index}/attributes/direction_names` or `/routes/{id} /data/attributes/direction_names`
+
+```
+filter[direction_id]
+
+## this does not work
+curl -sX GET "https://api-v3.mbta.com/routes/data/attributes/direction_names?filter[route]=Green-C" -H "accept: application/vnd.api+json" | jq | more 
+
+
+```
 
 ## Get running equipment on each Route
 
 ```
+# start with this query using predictions
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
+
+# equipment in both directions
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | grep "id" | more 
+
+# one direction
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | grep "id" | more 
+
+
+# strip out the vehicle equipment names
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | grep "id" | grep "G-" | more 
+
+# count how many rows
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | grep "id" | grep "G-" | wc -l
+
+# using uniq 
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | grep "id" | grep "G-" | uniq -c
+
 ```
 
 ## Get Prediction for a stop
 
 ```
+curl -sX GET "https://api-v3.mbta.com/predictions/?filter[route]=Green-C&filter[stop]=${routeStopId}&sort=direction_id,departure_time" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
 
@@ -149,9 +184,9 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=Green-C&sort=name&fiel
 ### Get Lines
 
 ```
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more
 
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | grep long_name | more
+curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | grep long_name | more
 ```
 
 Interesting fields
@@ -186,9 +221,9 @@ text_color
 ### Get Stops
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | more
+curl -sX GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | more
 
-curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=${routeId}&sort=name" -H "accept: application/vnd.api+json"
+curl -sX GET "https://api-v3.mbta.com/stops/?filter[route]=${routeId}&sort=name" -H "accept: application/vnd.api+json"
 ```
 
 ## Examples 
@@ -202,7 +237,7 @@ curl -X GET "https://api-v3.mbta.com/stops/?filter[route]=${routeId}&sort=name" 
 ```
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
+curl -sX GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
 ```
 
 ```
@@ -236,25 +271,25 @@ curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+jso
 ```
         "self": "/lines/line-Green"
 
-curl -X GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/lines/line-Green" -H "accept: application/vnd.api+json" | jq | more 
-curl -X GET "https://api-v3.mbta.com/lines/line-Red" -H "accept: application/vnd.api+json" | jq | more 
-curl -X GET "https://api-v3.mbta.com/lines/line-Blue" -H "accept: application/vnd.api+json" | jq | more 
-curl -X GET "https://api-v3.mbta.com/lines/line-Orange" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines/line-Green" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines/line-Red" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines/line-Blue" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines/line-Orange" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/lines/line-Blue/stops/" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/lines/line-Blue/stops/" -H "accept: application/vnd.api+json" | jq | more 
 
 
-curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep self | more 
+curl -sX GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep self | more 
 
-curl -X GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
+curl -sX GET "https://api-v3.mbta.com/stops/" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more
 ```
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more 
+curl -sX GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | grep Coolidge | more 
 ```
 
 ```
@@ -286,11 +321,11 @@ curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json
 ```
 
 ```
-curl -X GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/stops" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | more 
 
-curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | grep self | more 
+curl -sX GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+json" | jq | grep self | more 
 ```
 
 ```
@@ -340,7 +375,7 @@ curl -X GET "https://api-v3.mbta.com/routes" -H "accept: application/vnd.api+jso
 ## Get a Route
 
 ```
-curl -X GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | more 
+curl -sX GET "https://api-v3.mbta.com/routes/Green-C" -H "accept: application/vnd.api+json" | jq | more 
 ```
 
 ```
